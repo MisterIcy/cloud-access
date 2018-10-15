@@ -1,0 +1,33 @@
+{
+    "name": "mistericy/cloud-access",
+    "description": "Cloud Access Bundle for Symfony",
+    "type": "symfony-bundle",
+    "license": "Unlicense",
+    "authors": [
+        {
+            "name": "Alexandros Koutroulis",
+            "email": "icyd3mon@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.1|^7.2",
+        "sabre/dav": "3.2.*",
+        "symfony/config": "^3.4|^4.0",
+        "symfony/dependency-injection": "^3.4|^4.0",
+        "symfony/framework-bundle": "^3.4|^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "mistericy\\CloudAccess\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "mistericy\\CloudAccess\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^4.1"
+    }
+}
