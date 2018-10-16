@@ -44,7 +44,7 @@ class Response
      * @param string $body
      * @return Response
      */
-    public function setBody(string $body): Response
+    public function setBody(string $body = null): Response
     {
         $this->body = $body;
         return $this;
@@ -62,7 +62,7 @@ class Response
      * @param array $headers
      * @return Response
      */
-    public function setHeaders(array $headers): Response
+    public function setHeaders(array $headers = []): Response
     {
         $this->headers = $headers;
         return $this;
@@ -99,10 +99,10 @@ class Response
         array $data = []
     )
     {
-        $this->statusCode = $statusCode;
-        $this->body = $body;
-        $this->headers = $headers;
-        $this->data = $data;
+        $this->setStatusCode($statusCode)
+            ->setBody($body)
+            ->setHeaders($headers)
+            ->setData($data);
     }
 
     public static function MakeResponse(

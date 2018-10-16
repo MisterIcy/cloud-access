@@ -75,9 +75,9 @@ final class NextCloudAccessor extends AccessorFactory
      */
     protected function validateSettings(AccessorSettings $accessorSettings): AccessorSettings
     {
-        if (is_null($accessorSettings->getUsername()) ||
-            is_null($accessorSettings->getPassword()) ||
-            is_null($accessorSettings->getBaseUri())) {
+        if (empty($accessorSettings->getUsername()) ||
+            empty($accessorSettings->getPassword()) ||
+            empty($accessorSettings->getBaseUri())) {
             throw AccessorException::invalidSettingsForAccessor($this->getAccessorName());
         }
         /** Add a trailing slash to uris that miss it */

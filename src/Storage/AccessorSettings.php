@@ -21,7 +21,7 @@ class AccessorSettings
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUsername()
     {
         return $this->username;
     }
@@ -39,7 +39,7 @@ class AccessorSettings
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword()
     {
         return $this->password;
     }
@@ -57,7 +57,7 @@ class AccessorSettings
     /**
      * @return string
      */
-    public function getBaseUri(): string
+    public function getBaseUri()
     {
         return $this->baseUri;
     }
