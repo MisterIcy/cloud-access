@@ -13,11 +13,6 @@ use mistericy\CloudAccess\Storage\NextCloud\NextCloudAccessor;
 abstract class AccessorFactory
 {
 
-    /**
-     * @var AccessorSettings
-     */
-    private static $accessorSettings;
-
     public abstract function __construct(AccessorSettings $settings);
 
     /**

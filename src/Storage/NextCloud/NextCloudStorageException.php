@@ -20,4 +20,8 @@ class NextCloudStorageException extends Exception implements Throwable
     public static function FileNotFound(string $filePath) {
         return new self("I wasn't able to find {$filePath}", 404);
     }
+
+    public static function invalidAccessor() {
+        return new self("Invalid Accessor used");
+    }
 }

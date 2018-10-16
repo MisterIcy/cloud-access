@@ -21,11 +21,17 @@ class NextCloudStorage extends StorageFactory
 
     /**
      * NextCloudStorage constructor.
-     * @param AccessorFactory $accessor
+     * @param NextCloudAccessor $accessor
+     * @throws NextCloudStorageException
      */
     public function __construct(AccessorFactory $accessor)
     {
-        $this->nextCloudAccessor = $accessor;
+        if ($accessor instanceof NextCloudAccessor) {
+            $this->nextCloudAccessor = $accessor;
+        } else {
+            throw NextCloudStorageException::invalidAccessor();
+        }
+
     }
 
     /**
