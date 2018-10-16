@@ -130,7 +130,7 @@ class NextCloudStorage extends StorageFactory
      * @return string
      * @throws NextCloudStorageException
      */
-    public function getFile(string $filePath, Response &$response)
+    public function getFile(string $filePath, Response &$response = null)
     {
         $response = $this->nextCloudAccessor->doRequest(
             "GET",

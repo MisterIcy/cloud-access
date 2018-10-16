@@ -20,5 +20,5 @@ interface StorageInterface
     public function deleteFile(string $filePath, Response &$response = null) : bool;
     public function deleteFolder(string $folderPath, bool $recursive = false, Response &$response = null) : bool;
 
-    public function getFile(string $filePath, Response &$response);
+    public function getFile(string $filePath, Response &$response = null);
 }
