@@ -5,3 +5,4 @@ phpunit.xml
 .idea/
 composer.lock
 build/
+coverage.xml
