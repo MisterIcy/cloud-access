@@ -17,4 +17,7 @@ class NextCloudStorageException extends Exception implements Throwable
     {
         return new self("Recursive deletion of folders is mandatory");
     }
+    public static function FileNotFound(string $filePath) {
+        return new self("I wasn't able to find {$filePath}", 404);
+    }
 }

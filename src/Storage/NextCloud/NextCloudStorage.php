@@ -123,4 +123,23 @@ class NextCloudStorage extends StorageFactory
 
         return ($response->getStatusCode() === 204);
     }
+
+    /**
+     * @param string $filePath
+     * @param Response $response
+     * @return string
+     * @throws NextCloudStorageException
+     */
+    public function getFile(string $filePath, Response &$response)
+    {
+        $response = $this->nextCloudAccessor->doRequest(
+            "GET",
+            $filePath
+        );
+
+        if ($response->getStatusCode() === 404) {
+            throw NextCloudStorageException::FileNotFound($filePath);
+        }
+        return $response->getBody();
+    }
 }

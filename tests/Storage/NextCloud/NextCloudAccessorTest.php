@@ -118,6 +118,27 @@ class NextCloudAccessorTest extends TestCase
         self::assertEquals(true, $delete);
 
     }
+
+    public function testGetFile() {
+        $nextCloudAccessor = AccessorFactory::createNextCloudAccessor($this->createNextCloudSettings());
+
+        $response = Response::MakeResponse();
+
+        $filename = "UnitTest" . $this->generateRandomString(). ".md";
+        $data = $this->generateRandomString();
+        $create = $nextCloudAccessor->getStorage()->createFile($filename,$data, $response);
+
+        self::assertEquals(201, $response->getStatusCode());
+        self::assertEquals(true, $create);
+
+        $exists = $nextCloudAccessor->getStorage()->fileExists($filename, $response);
+        self::assertEquals(207, $response->getStatusCode());
+        self::assertEquals(true, $exists);
+
+        $fileData = $nextCloudAccessor->getStorage()->getFile($filename, $response);
+        self::assertEquals(200, $response->getStatusCode());
+        self::assertEquals($data, $fileData);
+    }
     private function createNextCloudSettings() : AccessorSettings
     {
         $accessorSettings = new AccessorSettings();
