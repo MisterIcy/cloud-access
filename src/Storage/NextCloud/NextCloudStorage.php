@@ -69,9 +69,15 @@ class NextCloudStorage extends StorageFactory
      * @param $data
      * @param Response|null $response
      * @return bool
+     * @throws NextCloudStorageException
      */
     public function createFile(string $filePath, $data, Response &$response = null): bool
     {
+        $checkAndCreatePath = $this->createFolderPath($filePath, $response);
+        if (!$checkAndCreatePath) {
+            throw NextCloudStorageException::unableToCreateFolder();
+        }
+
         $response = $this->nextCloudAccessor->doRequest(
             "PUT",
             $filePath,
@@ -79,6 +85,24 @@ class NextCloudStorage extends StorageFactory
         );
 
         return ($response->getStatusCode() === 201);
+    }
+
+    public function createFolderPath(string $filePath, Response &$response = null) : bool
+    {
+        $pathToCreate = explode("/", $filePath);
+        $currentPath = "";
+        for ($p = 0; $p<count($pathToCreate) - 1; $p++) {
+            //Last element of the array is the file
+            $currentPath .= "/" . $pathToCreate[$p];
+            $exists = $this->folderExists($currentPath, $response);
+            if (!$exists) {
+                $created = $this->createFolder($currentPath, $response);
+                if (!$created) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**

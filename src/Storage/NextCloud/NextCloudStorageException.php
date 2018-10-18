@@ -24,4 +24,7 @@ class NextCloudStorageException extends Exception implements Throwable
     public static function invalidAccessor() {
         return new self("Invalid Accessor used");
     }
+    public static function unableToCreateFolder() {
+        return new self("I was unable to create the requested path");
+    }
 }

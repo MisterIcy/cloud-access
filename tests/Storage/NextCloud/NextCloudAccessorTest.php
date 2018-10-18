@@ -18,9 +18,23 @@ use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class NextCloudAccessorTest extends TestCase
 {
+
     const NEXTCLOUD_DEMO_INSTANCE_URI = "https://demo14.nextcloud.bayton.org/";
     const NEXTCLOUD_DEMO_INSTANCE_USER = 'admin';
     const NEXTCLOUD_DEMO_INSTANCE_PASS = 'admin';
+
+    public function testCreateLongPath() {
+        $nextCloudAccessor = AccessorFactory::createNextCloudAccessor($this->createNextCloudSettings());
+
+        $response = Response::MakeResponse();
+
+        $filename = "This/Is/A/Long/Path/Test/UnitTest" . $this->generateRandomString(). ".md";
+        $data = $this->generateRandomString();
+        $create = $nextCloudAccessor->getStorage()->createFile($filename,$data, $response);
+
+        self::assertEquals(201, $response->getStatusCode());
+        self::assertEquals(true, $create);
+    }
 
     public function testCreateFileInCloud()
     {
